@@ -2,7 +2,6 @@ SpeedReaderJS
 =============
 
 Plugin for speed reading
-------------------------
 
 Using
 -----
