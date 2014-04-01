@@ -9,12 +9,11 @@ Using
 
 Place the following code in the HEAD section of your code:
 <pre>
-<link rel="stylesheet" type="text/css" href="srjs.css">
-<script type="text/javascript" src="srjs.js"></script>
-<script type="text/javascript">
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;srjs.css&quot;&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;srjs.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
     srjs.show();
-</script>
-</pre>
+&lt;/script&gt;</pre>
   
 Liks
 ----
