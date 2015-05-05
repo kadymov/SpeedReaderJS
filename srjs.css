@@ -31,6 +31,7 @@
     -webkit-user-select: none;
     user-select: none;
 }
+
 .speed-reader.full-scr {
     top: 0 !important;
     left: 0 !important;
@@ -39,11 +40,13 @@
     border-radius: 0;
     background-color: rgba(0, 0, 0, 0.8);
 }
+
 .speed-reader-caption {
     padding: 5px 3px;
     font-weight: bold;
     cursor: move;
 }
+
 .speed-reader.full-scr .speed-reader-caption {
     background-color: rgba(0, 0, 0, 0.3);
 }
@@ -55,22 +58,54 @@
     margin-top: 1px;
     float: right;
     cursor: pointer;
-    background: url('./srjs.png') no-repeat;
 }
 
 .speed-reader-infbut {
     margin-right: 3px;
-    background-position: -120px 0;
+    background: #aaa;
+    text-align: center;
+    border-radius: 20px;
+    width: 12px;
+    height: 12px;
+    color: #fff;
+    font-weight: normal;
+    font-family: monospace;
+    font-size: 10px;
 }
+
+.speed-reader-infbut:hover {
+    background: #EB5A46;
+}
+
 .speed-reader-infbut:hover {
     background-position: -120px -30px;
 }
+
 .speed-reader-fullbut {
-    background-position: -135px 0;
+    margin: 4px 2px 0 2px;
+    display: block;
+    width: 6px;
+    height: 5px;
+    border: 1px solid #aaa;
+    border-top-width: 2px; 
 }
-.speed-reader-fullbut:hover {
-    background-position: -135px -30px;
+
+.speed-reader-fullbut:after {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 5px;
+    border-top: 2px solid #aaa;
+    border-left: 1px solid #aaa;
+    margin-left: -3px;
+    margin-top: -5px;
 }
+
+.speed-reader-fullbut:hover,
+.speed-reader-fullbut:hover:after {
+  border-color: #EB5A46;
+}
+
 .speed-reader-canv {
     display: block;
     width: 100%;
@@ -113,48 +148,113 @@
 * ************************************************* */
 .speed-reader-button {
     width: 30px;
-    background: #EAEAEB url('./srjs.png') no-repeat top left;
+    height: 30px;
     border-radius: 30px;
     cursor: pointer;
+    background: #EAEAEB;
 }
+
+.speed-reader-button .ico {
+    margin-bottom: -1px;
+}
+
 .speed-reader.full-scr .speed-reader-button {
     background-color: rgba(0, 0, 0, 0.5);
 }
-.speed-reader-button.play {
-    background-position: 0 0;
+
+.speed-reader-button.play .ico {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-left: 10px solid #BCBEC0;
+    border-bottom: 5px solid transparent;
 }
-.speed-reader-button.play:hover {
-    background-position: 0 -30px;
+
+.speed-reader-button.play:hover .ico {
+  border-left-color: #EB5A46;
 }
-.speed-reader-button.pause {
-    background-position: -90px 0;
+
+.speed-reader-button.pause .ico {
+    display: inline-block;
+    width: 4px;
+    height: 10px;
+    background: #BCBEC0;
+    margin-right: 6px;
 }
-.speed-reader-button.pause:hover {
-    background-position: -90px -30;
+
+.speed-reader-button.pause .ico:after {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 10px;
+    background: #BCBEC0;
+    margin-left: 6px;
 }
-.speed-reader-button.stop {
-    background-position: -30px 0;
+
+.speed-reader-button.pause:hover .ico {
+  background: #EB5A46;
 }
-.speed-reader-button.stop:hover {
-    background-position: -30px -30px;
+
+.speed-reader-button.pause:hover .ico:after {
+  background: #EB5A46;
 }
-.speed-reader-button.back {
-    background-position: -60px 0;
+
+.speed-reader-button.stop .ico {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #BCBEC0;
 }
-.speed-reader-button.back:hover {
-    background-position: -60px -30px
+
+.speed-reader-button.stop:hover .ico {
+    background: #EB5A46;
+}
+
+.speed-reader-button.back .ico {
+    display: inline-block;
+    width: 3px;
+    height: 10px;
+    background: #BCBEC0;
+    margin-right: 7px;
+}
+
+.speed-reader-button.back .ico:after {
+    content: '';
+    display: block;
+    margin-left: 4px;
+
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-right: 5px solid #BCBEC0;
+    border-bottom: 5px solid transparent;
+}
+
+.speed-reader-button.back:hover .ico {
+    background: #EB5A46;
+}
+
+.speed-reader-button.back:hover .ico:after {
+    border-right-color: #EB5A46;
 }
 
 /* Resizer
  * ************************************************* */
 .speed-reader-resizer {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: -10px;
+    right: -5px;
     width: 15px;
-    height: 15px;
-    background: url('./srjs.png') bottom right;
+    height: 30px;
     cursor: nw-resize;
+    background: #aaa;
+
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 .speed-reader.full-scr .speed-reader-resize {
     display: none;

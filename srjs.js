@@ -95,7 +95,9 @@
                 vTopLineY = vertCenter - halfTextHeight,
                 vBotLineY = vertCenter + halfTextHeight,
                 
-                centerLineX = (width - LR_MARGIN * 2) / 3;
+                centerLineX = (width - LR_MARGIN * 2) / 3,
+
+                marg = 5;
             
             ctx.save();
             ctx.clearRect(0, 0, width, height);
@@ -116,18 +118,6 @@
             ctx.lineTo(centerLineX, vBotLineY);
             ctx.stroke();
             
-            clearText();
-        }
-
-        function clearText() {
-            var vertCenter = height / 2,
-                halfTextHeight = fontSize / 2 + 10,
-
-                vTopLineY = vertCenter - halfTextHeight,
-                vBotLineY = vertCenter + halfTextHeight,
-                
-                marg = 5;
-        
             ctx.clearRect(0, vTopLineY + marg,
                 width, vBotLineY - vTopLineY - marg*2);
         }
@@ -144,7 +134,7 @@
                 vertCenter = height / 2,
                 centerLineX = (width - LR_MARGIN * 2) / 3;
             
-            clearText();
+            drawBg();
             
             ctx.save();
             
@@ -571,27 +561,38 @@
                 win.focus();
         }
 
+        function createButton(butClass, title) {
+            var but = createEl('li',
+                    'speed-reader-button ' + (butClass || ''), 
+                    '&nbsp;', title || ''),
+
+                ico = createEl('i',
+                    'ico', 
+                    '', '');
+
+                but.appendChild(ico);
+
+            return but;
+        }
+
         function createForm() {
             var form        = createEl('div', 'speed-reader'),
                 caption     = createEl('div',
                     'speed-reader-caption', CAPTION_STR),
 
                 infBut      = createEl('div',
-                    'speed-reader-infbut', undefined, 'Information'),
+                    'speed-reader-infbut', 'i', 'Information'),
 
                 fullBut     = createEl('div',
                     'speed-reader-fullbut', undefined, 'Full screen mode'),
 
                 panel       = createEl('ul', 'speed-reader-panel'),
 
-                playBut     = createEl('li',
-                    'speed-reader-button play', '&nbsp;', 'Play/Pause'),
+                playBut = createButton('play', 'Play/Pause'),
 
-                stopBut     = createEl('li',
-                    'speed-reader-button stop', '&nbsp;', 'Stop'),
+                stopBut     = createButton('stop', 'Stop'),
 
-                backBut     = createEl('li',
-                    'speed-reader-button back', '&nbsp;', 'Back'),
+                backBut     = createButton('back', 'Back'),
 
                 speedLi     = createEl('li', undefined, 'Speed: '),
 
@@ -698,6 +699,7 @@
             Output.init(form.canv);
             Reader.init(Output, function () {
                 form.play.classList.remove('pause');
+                form.play.classList.add('play');
             }, function (wordId, count) {
                 var val = parseInt(wordId / (count / 100), 10);
                 form.pbar.val(val);
@@ -706,7 +708,8 @@
             form.play.addEventListener('click', function(e) {
                 if (Reader.isPlay()) {
                     Reader.pause();
-                    e.target.classList.remove('pause');
+                    form.play.classList.remove('pause');
+                    form.play.classList.add('play');
 
                 } else {
                     var sel = window.getSelection().toString();
@@ -720,6 +723,7 @@
 
                     Reader.play();
                     e.target.classList.add('pause');
+                    form.play.classList.remove('play');
                 }
             }, false);
 
@@ -727,6 +731,7 @@
                 Reader.stop();
                 form.pbar.val(0);
                 form.play.classList.remove('pause');
+                form.play.classList.add('play');
             }, false);
 
             form.back.addEventListener('click', function() {
