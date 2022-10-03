@@ -3,6 +3,8 @@ SpeedReaderJS
 
 Plugin for speed reading
 
+[DEMO](https://htmlpreview.github.io/?https://github.com/kadymov/SpeedReaderJS/blob/master/demo.htm)
+
 Using
 -----
 
